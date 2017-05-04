@@ -1,0 +1,19 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  host: localhost
+  username: root
+  password: 
+
+development:
+  <<: *default
+  database: meneito_dev
+
+test:
+  <<: *default
+  database: meneito_test
+
+production:
+  <<: *default
+  database: meneito_prd
