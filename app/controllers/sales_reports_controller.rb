@@ -52,7 +52,7 @@ class SalesReportsController < ApplicationController
     def sales_report_params
       params
         .require(:sales_report)
-        .permit(:entity_id, :comment, :traffic, car_sales_attributes: [:amount, :car_model_id])
+        .permit(:id, :entity_id, :comment, :traffic, car_sales_attributes: [:id, :amount, :car_model_id])
       #params.require(:sales_report)
     end
 end
