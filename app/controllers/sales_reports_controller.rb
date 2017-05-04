@@ -15,7 +15,11 @@ class SalesReportsController < ApplicationController
 
   # POST /sales_reports
   def create
+    p sales_report_params.inspect
     @sales_report = SalesReport.new(sales_report_params)
+
+    p @sales_report.inspect
+    p @sales_report.car_sales.inspect
 
     if @sales_report.save
       render json: @sales_report, status: :created, location: @sales_report
@@ -46,6 +50,9 @@ class SalesReportsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def sales_report_params
-      params.require(:sales_report).permit(:entity_id, :comment, :traffic)
+      params
+        .require(:sales_report)
+        .permit(:entity_id, :comment, :traffic, car_sales_attributes: [:amount, :car_model_id])
+      #params.require(:sales_report)
     end
 end
